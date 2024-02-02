@@ -405,15 +405,16 @@ Bruno Rodrigues
 <section id="what-is-r" class="slide level2">
 <h2>What is R?</h2>
 <ul>
-<li class="fragment">GNU R is a multi-paradigm programming language (first released 1993)</li>
-<li class="fragment">FLOSS implementation of the S language developed at Bell Labs</li>
-<li class="fragment">Statistics, machine learning and data science</li>
-<li class="fragment">Great for visualisation tasks as well</li>
-<li class="fragment">Built-in objects: data frames, matrices, formulas, models…</li>
+<li>GNU R is a multi-paradigm programming language (first released 1993)</li>
+<li>FLOSS implementation of the S language developed at Bell Labs</li>
+<li>Statistics, machine learning and data science</li>
+<li>Great for visualisation tasks as well</li>
+<li>Built-in objects: data frames, matrices, formulas, models…</li>
 </ul>
 </section>
 <section id="hello-world" class="slide level2">
 <h2>Hello World!</h2>
+<p>Regressions:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>life_cycle_savings <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"life_cycle_savings.csv"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
@@ -421,28 +422,81 @@ Bruno Rodrigues
 <span id="cb1-4"><a href="#cb1-4"></a></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="fu">summary</span>(fm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Data manipulation/cleaning:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">filter</span>(skin_color <span class="sc">==</span> <span class="st">"light"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">select</span>(species, sex, mass) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">group_by</span>(sex, species) <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="at">total_individuals =</span> <span class="fu">n</span>(),</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">min_mass =</span> <span class="fu">min</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="at">mean_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="at">sd_mass =</span> <span class="fu">sd</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="at">max_mass =</span> <span class="fu">max</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">select</span>(<span class="sc">-</span>species) <span class="sc">%&gt;%</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>sex, <span class="at">names_to =</span> <span class="st">"statistic"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="cran-and-bioconductor" class="slide level2">
 <h2>CRAN and Bioconductor</h2>
 <ul>
-<li class="fragment">CRAN is the repository of R packages to extend the language</li>
-<li class="fragment">As of writing, 20331 packages available</li>
-<li class="fragment">Biocondcutor: repository with a focus on Bioinformatics: 2266 more packages</li>
-<li class="fragment">All available through <code>nixpkgs</code> in the <code>rPackages</code> set!</li>
+<li>CRAN is the repository of R packages to extend the language</li>
+<li>As of writing, 20331 packages available</li>
+<li>Biocondcutor: repository with a focus on Bioinformatics: 2266 more packages</li>
+<li>All available through <code>nixpkgs</code> in the <code>rPackages</code> set!</li>
 </ul>
 </section>
 <section id="per-project-environments" class="slide level2">
 <h2>Per-project environments</h2>
 <ul>
-<li class="fragment">Per-project environments are not really a thing</li>
-<li class="fragment">Focus on providing a per-project library of packages</li>
-<li class="fragment">Docker if reproducibility is required (see <a href="https://rocker-project.org/">Rocker project</a>)</li>
+<li>Per-project environments are not really a thing</li>
+<li>Focus on providing a per-project library of packages</li>
+<li>Docker if reproducibility is required (see <a href="https://rocker-project.org/">Rocker project</a>)</li>
 </ul>
 </section>
-<section id="rix" class="slide level2">
-<h2>rix</h2>
+<section id="rix-12" class="slide level2">
+<h2>rix 1/2</h2>
 <ul>
-<li class="fragment">Per-project reproducible environments with rix <code>rix()</code> <code>with_nix()</code></li>
+<li>Per-project reproducible environments with <code>{rix}</code>.</li>
+<li>Simply use the provided <code>rix()</code> function:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(rix)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">rix</span>(<span class="at">r_ver =</span> <span class="st">"4.3.1"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="at">r_pkgs =</span> <span class="fu">c</span>(<span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>),</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="at">system_pkgs =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="at">git_pkgs =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">tex_pkgs =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="at">ide =</span> <span class="st">"rstudio"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="at">project_path =</span> <span class="st">"."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Generates <a href="https://raw.githubusercontent.com/b-rodrigues/fosdem2024_pres/master/shell.nix">this expression</a>.</li>
+</ul>
+</section>
+<section id="rix-22" class="slide level2">
+<h2>rix 2/2</h2>
+<ul>
+<li>Also possible to evaluate single function inside a “subshell”:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>out_nix <span class="ot">&lt;-</span> <span class="fu">with_nix</span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="at">expr =</span> <span class="cf">function</span>() <span class="fu">my_function</span>(...),</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="at">program =</span> <span class="st">"R"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">exec_mode =</span> <span class="st">"non-blocking"</span>, <span class="co"># run as background process</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">project_path =</span> path_to_subshell.nix,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="at">message_type =</span> <span class="st">"simple"</span> <span class="co"># you can do `"verbose"`, too</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Works from R installed via Nix or not!</li>
 </ul>
 </section>
 <section id="to-know-more" class="slide level2">
