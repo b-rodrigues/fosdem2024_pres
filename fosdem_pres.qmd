@@ -3,7 +3,6 @@ title: "rix: reproducible development environments for R programmers"
 author: "Bruno Rodrigues"
 format:
   revealjs:
-    embed-resources: true
     slide-number: true
     theme: solarized
     incremental: true
