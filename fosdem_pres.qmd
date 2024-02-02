@@ -29,7 +29,12 @@ fm1 <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 summary(fm1)
 ```
 
-## CRAN
+## CRAN and Bioconductor
+
+- CRAN is the repository of R packages to extend the language
+- As of writing, 20331 packages available
+- Biocondcutor: repository with a focus on Bioinformatics: 2266 more packages
+- All available through `nixpkgs` in the `rPackages` set!
 
 ## Per-project environments
 
