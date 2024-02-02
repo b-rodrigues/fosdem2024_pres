@@ -21,7 +21,15 @@ execute:
 
 ## Hello World!
 
-```{r}
+```{r, include = F}
+targets::tar_read(life_cycle_savings)
+
+fm1 <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
+
+summary(fm1)
+```
+
+```{r, eval = F}
 life_cycle_savings <- read.csv("life_cycle_savings.csv")
 
 fm1 <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
