@@ -433,14 +433,10 @@ Bruno Rodrigues
 <span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">group_by</span>(sex, species) <span class="sc">%&gt;%</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">summarise</span>(</span>
 <span id="cb2-9"><a href="#cb2-9"></a>    <span class="at">total_individuals =</span> <span class="fu">n</span>(),</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">min_mass =</span> <span class="fu">min</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    <span class="at">mean_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    <span class="at">sd_mass =</span> <span class="fu">sd</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb2-13"><a href="#cb2-13"></a>    <span class="at">max_mass =</span> <span class="fu">max</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb2-14"><a href="#cb2-14"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">select</span>(<span class="sc">-</span>species) <span class="sc">%&gt;%</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>sex, <span class="at">names_to =</span> <span class="st">"statistic"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">mean_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="at">sd_mass =</span> <span class="fu">sd</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="cran-and-bioconductor" class="slide level2">
