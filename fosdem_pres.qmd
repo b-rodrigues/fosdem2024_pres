@@ -1,0 +1,47 @@
+---
+title: "rix: reproducible development environments for R programmers"
+author: "Bruno Rodrigues"
+format:
+  revealjs:
+    embed-resources: true
+    slide-number: true
+    theme: solarized
+    incremental: true
+execute:
+  echo: true
+---
+
+## What is R?
+
+- GNU R is a multi-paradigm programming language (first released 1993)
+- FLOSS implementation of the S language developed at Bell Labs
+- Statistics, machine learning and data science
+- Great for visualisation tasks as well
+- Built-in objects: data frames, matrices, formulas, models...
+
+## Hello World!
+
+```{r}
+life_cycle_savings <- read.csv("life_cycle_savings.csv")
+
+fm1 <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
+
+summary(fm1)
+```
+
+## CRAN
+
+## Per-project environments
+
+not really an R thing
+mostly focused on per-project library of packages
+
+## rix
+
+per-project reproducible environments
+rix()
+with_nix()
+
+## To know more
+
+https://b-rodrigues.github.io/rix/
