@@ -27,12 +27,36 @@ fm1 <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 summary(fm1)
 ```
 
+Regressions:
+
 ```{r, eval = F}
 life_cycle_savings <- read.csv("life_cycle_savings.csv")
 
 fm1 <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 
 summary(fm1)
+```
+
+Data manipulation/cleaning:
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+starwars %>%
+  filter(skin_color == "light") %>%
+  select(species, sex, mass) %>%
+  group_by(sex, species) %>%
+  summarise(
+    total_individuals = n(),
+    min_mass = min(mass, na.rm = TRUE),
+    mean_mass = mean(mass, na.rm = TRUE),
+    sd_mass = sd(mass, na.rm = TRUE),
+    max_mass = max(mass, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  select(-species) %>%
+  pivot_longer(-sex, names_to = "statistic", values_to = "value")
 ```
 
 ## CRAN and Bioconductor
@@ -54,6 +78,8 @@ summary(fm1)
 - Simply use the provided `rix()` function:
 
 ```{r}
+library(rix)
+
 rix(r_ver = "4.3.1",
     r_pkgs = c("dplyr", "ggplot2"),
     system_pkgs = NULL,
