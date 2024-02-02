@@ -4,7 +4,7 @@ library(tarchetypes)
 list(
   tar_target(
     life_cycle_savings,
-    read.csv("life_cycle_savings")
+    read.csv("life_cycle_savings.csv")
   ),
   tar_quarto(
     fosdem_pres,
