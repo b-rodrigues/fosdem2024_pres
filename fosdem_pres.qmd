@@ -49,14 +49,10 @@ starwars %>%
   group_by(sex, species) %>%
   summarise(
     total_individuals = n(),
-    min_mass = min(mass, na.rm = TRUE),
     mean_mass = mean(mass, na.rm = TRUE),
     sd_mass = sd(mass, na.rm = TRUE),
-    max_mass = max(mass, na.rm = TRUE),
     .groups = "drop"
-  ) %>%
-  select(-species) %>%
-  pivot_longer(-sex, names_to = "statistic", values_to = "value")
+  )
 ```
 
 ## CRAN and Bioconductor
