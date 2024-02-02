@@ -46,15 +46,18 @@ summary(fm1)
 
 ## Per-project environments
 
-not really an R thing
-mostly focused on per-project library of packages
+- Per-project environments are not really a thing
+- Focus on providing a per-project library of packages
+- Docker if reproducibility is required (see [Rocker project](https://rocker-project.org/))
 
 ## rix
 
-per-project reproducible environments
-rix()
-with_nix()
+- Per-project reproducible environments with rix
+`rix()`
+`with_nix()`
 
 ## To know more
 
+```
 https://b-rodrigues.github.io/rix/
+```
