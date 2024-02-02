@@ -5,7 +5,6 @@ format:
   revealjs:
     slide-number: true
     theme: solarized
-    incremental: true
 execute:
   echo: true
 ---
@@ -49,11 +48,39 @@ summary(fm1)
 - Focus on providing a per-project library of packages
 - Docker if reproducibility is required (see [Rocker project](https://rocker-project.org/))
 
-## rix
+## rix 1/2
 
-- Per-project reproducible environments with rix
-`rix()`
-`with_nix()`
+- Per-project reproducible environments with `{rix}`.
+- Simply use the provided `rix()` function:
+
+```{r}
+rix(r_ver = "4.3.1",
+    r_pkgs = c("dplyr", "ggplot2"),
+    system_pkgs = NULL,
+    git_pkgs = NULL,
+    tex_pkgs = NULL,
+    ide = "rstudio",
+    project_path = path_default_nix,
+    overwrite = TRUE,
+    print = TRUE)
+```
+
+
+## rix 2/2
+
+- Also possible to evaluate single function inside a "subshell":
+
+```{r, eval = F}
+out_nix_1 <- with_nix(
+  expr = function() my_function(...),
+  program = "R",
+  exec_mode = "non-blocking", # run as background process
+  project_path = path_to_subshell.nix,
+  message_type = "simple" # you can do `"verbose"`, too
+)
+```
+
+- Works from R installed via Nix or not!
 
 ## To know more
 
