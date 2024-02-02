@@ -77,7 +77,7 @@ starwars %>%
 - Per-project reproducible environments with `{rix}`.
 - Simply use the provided `rix()` function:
 
-```{r}
+```{r, eval = FALSE}
 library(rix)
 
 rix(r_ver = "4.3.1",
@@ -86,10 +86,10 @@ rix(r_ver = "4.3.1",
     git_pkgs = NULL,
     tex_pkgs = NULL,
     ide = "rstudio",
-    project_path = ".",
-    overwrite = TRUE,
-    print = TRUE)
+    project_path = ".")
 ```
+
+- Generates [this expression](https://raw.githubusercontent.com/b-rodrigues/fosdem2024_pres/master/shell.nix).
 
 
 ## rix 2/2
