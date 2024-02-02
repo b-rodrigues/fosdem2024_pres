@@ -1,0 +1,62 @@
+---
+title: "rix: reproducible development environments for R programmers"
+author: "Bruno Rodrigues"
+format:
+  revealjs:
+    slide-number: true
+    theme: solarized
+    incremental: true
+execute:
+  echo: true
+---
+
+## What is R?
+
+- GNU R is a multi-paradigm programming language (first released 1993)
+- FLOSS implementation of the S language developed at Bell Labs
+- Statistics, machine learning and data science
+- Great for visualisation tasks as well
+- Built-in objects: data frames, matrices, formulas, models...
+
+## Hello World!
+
+```{r, include = F}
+targets::tar_read(life_cycle_savings)
+
+fm1 <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
+
+summary(fm1)
+```
+
+```{r, eval = F}
+life_cycle_savings <- read.csv("life_cycle_savings.csv")
+
+fm1 <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
+
+summary(fm1)
+```
+
+## CRAN and Bioconductor
+
+- CRAN is the repository of R packages to extend the language
+- As of writing, 20331 packages available
+- Biocondcutor: repository with a focus on Bioinformatics: 2266 more packages
+- All available through `nixpkgs` in the `rPackages` set!
+
+## Per-project environments
+
+- Per-project environments are not really a thing
+- Focus on providing a per-project library of packages
+- Docker if reproducibility is required (see [Rocker project](https://rocker-project.org/))
+
+## rix
+
+- Per-project reproducible environments with rix
+`rix()`
+`with_nix()`
+
+## To know more
+
+```
+https://b-rodrigues.github.io/rix/
+```

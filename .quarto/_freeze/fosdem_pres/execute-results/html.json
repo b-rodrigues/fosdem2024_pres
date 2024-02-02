@@ -1,0 +1,19 @@
+{
+  "hash": "2bbdddf61a3721fe368fc5c4206ba09a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"rix: reproducible development environments for R programmers\"\nauthor: \"Bruno Rodrigues\"\nformat:\n  revealjs:\n    slide-number: true\n    theme: solarized\n    incremental: true\nexecute:\n  echo: true\n---\n\n\n## What is R?\n\n- GNU R is a multi-paradigm programming language (first released 1993)\n- FLOSS implementation of the S language developed at Bell Labs\n- Statistics, machine learning and data science\n- Great for visualisation tasks as well\n- Built-in objects: data frames, matrices, formulas, models...\n\n## Hello World!\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlife_cycle_savings <- read.csv(\"life_cycle_savings.csv\")\n\nfm1 <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)\n\nsummary(fm1)\n```\n:::\n\n\n## CRAN and Bioconductor\n\n- CRAN is the repository of R packages to extend the language\n- As of writing, 20331 packages available\n- Biocondcutor: repository with a focus on Bioinformatics: 2266 more packages\n- All available through `nixpkgs` in the `rPackages` set!\n\n## Per-project environments\n\n- Per-project environments are not really a thing\n- Focus on providing a per-project library of packages\n- Docker if reproducibility is required (see [Rocker project](https://rocker-project.org/))\n\n## rix\n\n- Per-project reproducible environments with rix\n`rix()`\n`with_nix()`\n\n## To know more\n\n```\nhttps://b-rodrigues.github.io/rix/\n```\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-after-body": [
+        "\n<script>\n  // htmlwidgets need to know to resize themselves when slides are shown/hidden.\n  // Fire the \"slideenter\" event (handled by htmlwidgets.js) when the current\n  // slide changes (different for each slide format).\n  (function () {\n    // dispatch for htmlwidgets\n    function fireSlideEnter() {\n      const event = window.document.createEvent(\"Event\");\n      event.initEvent(\"slideenter\", true, true);\n      window.document.dispatchEvent(event);\n    }\n\n    function fireSlideChanged(previousSlide, currentSlide) {\n      fireSlideEnter();\n\n      // dispatch for shiny\n      if (window.jQuery) {\n        if (previousSlide) {\n          window.jQuery(previousSlide).trigger(\"hidden\");\n        }\n        if (currentSlide) {\n          window.jQuery(currentSlide).trigger(\"shown\");\n        }\n      }\n    }\n\n    // hookup for slidy\n    if (window.w3c_slidy) {\n      window.w3c_slidy.add_observer(function (slide_num) {\n        // slide_num starts at position 1\n        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);\n      });\n    }\n\n  })();\n</script>\n\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
