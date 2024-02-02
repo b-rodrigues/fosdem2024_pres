@@ -39,7 +39,7 @@ summary(fm1)
 
 Data manipulation/cleaning:
 
-```{r}
+```{r, eval = F}
 library(dplyr)
 library(tidyr)
 
@@ -97,7 +97,7 @@ rix(r_ver = "4.3.1",
 - Also possible to evaluate single function inside a "subshell":
 
 ```{r, eval = F}
-out_nix_1 <- with_nix(
+out_nix <- with_nix(
   expr = function() my_function(...),
   program = "R",
   exec_mode = "non-blocking", # run as background process
